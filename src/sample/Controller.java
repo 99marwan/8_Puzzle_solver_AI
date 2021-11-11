@@ -65,7 +65,6 @@ public class Controller {
     public void Array(ActionEvent press){
         String state = textField.getText();
         Count = 0;
-        bfs.reset();
         if(bfs.SearchTech(state,"012345678")){
             states = bfs.pathToGoal();
             setButtons(state);

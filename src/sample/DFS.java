@@ -8,11 +8,18 @@ import java.util.Stack;
 public class DFS implements EightPuzzle{
 
     private int maxDepth = 0;
+    //Variable that contains the cost of the path
+    private int costOfPath = 0;
     private int visit = 0;
     private  HashMap<String,Node> visited = new HashMap<>();
 
     @Override
     public Boolean SearchTech(String initialState, String goalState) {
+        maxDepth = 0;
+        visit = 0;
+        costOfPath=0;
+        visited =  new HashMap<>();
+
         Stack<Node> frontier = new Stack<>();
 
         HashSet<String> frontierHelperMap = new HashSet<>();
@@ -32,8 +39,6 @@ public class DFS implements EightPuzzle{
 
             current = frontier.pop();
 
-            System.out.println("Current : "+current.getState());
-
             this.visit++;
 
             if (current.getDepth() > this.maxDepth){
@@ -45,6 +50,7 @@ public class DFS implements EightPuzzle{
             visited.put(current.getState(),current);
 
             if(current.getState().equals(goalState)){
+                costOfPath = current.getDepth();
                 System.out.println("\n\nSUCCESS");
                 System.out.println("visited nodes : " + this.visit + ",  Max depth : " + this.maxDepth
                  + ",  goal depth : " + current.getDepth());
@@ -61,10 +67,7 @@ public class DFS implements EightPuzzle{
                     if(!visited.containsKey(state) && !frontierHelperMap.contains(state)){
                         frontier.push(frontiers.get(i));
                         frontierHelperMap.add(state);
-                        System.out.println(frontiers.get(i).getState() + "     added to frontier");
                     }
-                    else
-                        System.out.println(frontiers.get(i).getState() + "     visited / frontier");
                 }
             }
         }
@@ -83,11 +86,6 @@ public class DFS implements EightPuzzle{
         return visit;
     }
 
-    public void reset(){
-        maxDepth = 0;
-        visit = 0;
-        visited =  new HashMap<>();
-    }
 
     public ArrayList<String> pathToGoal(){
         ArrayList<String> path = new ArrayList<>();

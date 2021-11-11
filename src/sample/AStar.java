@@ -6,6 +6,8 @@ import java.util.PriorityQueue;
 
 public class AStar implements EightPuzzle{
 
+    //Create hashmap for explored entries
+    HashMap<String,Node> explored =new HashMap<String,Node>();
 
     //Variable that tracks max depth in search
     private int maxDepth=0;
@@ -42,6 +44,7 @@ public class AStar implements EightPuzzle{
         maxDepth=0;
         startOfPath = null;
         nodesExpanded = 0;
+        explored = new HashMap<>();
         costOfPath = 0;
         return SearchAStarManhattan(initialState, goalState);
     }
@@ -53,6 +56,7 @@ public class AStar implements EightPuzzle{
         startOfPath = null;
         nodesExpanded = 0;
         costOfPath = 0;
+        explored = new HashMap<>();
         return SearchAStarEuclidean(initialState,goalState);
     }
 
@@ -72,8 +76,7 @@ public class AStar implements EightPuzzle{
         //Create hashmap for frontier entries
         HashMap<String,Node> frontierMap=new HashMap<String,Node>();
 
-        //Create hashmap for explored entries
-        HashMap<String,Node> explored =new HashMap<String,Node>();
+
 
         //Add initial node to frontier and frontier map (with key as the state in frontier map)
         frontier.add(initialNode);
@@ -100,24 +103,19 @@ public class AStar implements EightPuzzle{
                 nodesExpanded = explored.size();
                 costOfPath = currState.getDepth();
 
-                startOfPath = currState.getParent();
+                /*startOfPath = currState.getParent();
                 while (startOfPath != null) {
                     startOfPath.setChild(currState);
                     currState = startOfPath;
                     startOfPath = startOfPath.getParent();
 
                 }
-                startOfPath = currState;
+                startOfPath = currState;*/
 
                 System.out.println("Goal Reached !");
                 System.out.println("Search Depth " + maxDepth);
                 System.out.println("# of nodes expanded = " + nodesExpanded);
                 System.out.println("Cost of Path = "+ costOfPath);
-
-                while (startOfPath != null) {
-                    System.out.println(startOfPath.getState());
-                    startOfPath = startOfPath.getChild();
-                }
 
                 return true;
             }
@@ -172,8 +170,6 @@ public class AStar implements EightPuzzle{
         //Create hashmap for frontier entries
         HashMap<String,Node> frontierMap=new HashMap<String,Node>();
 
-        //Create hashmap for explored entries
-        HashMap<String,Node> explored =new HashMap<String,Node>();
 
         //Add initial node to frontier and frontier map (with key as the state in frontier map)
         frontier.add(initialNode);
@@ -200,23 +196,19 @@ public class AStar implements EightPuzzle{
                 nodesExpanded = explored.size();
                 costOfPath = currState.getDepth();
 
-                startOfPath = currState.getParent();
+                /*startOfPath = currState.getParent();
                 while (startOfPath != null) {
                     startOfPath.setChild(currState);
                     currState = startOfPath;
                     startOfPath = startOfPath.getParent();
 
                 }
-                startOfPath = currState;
+                startOfPath = currState;*/
 
                 System.out.println("Goal Reached !");
                 System.out.println("Search Depth " + maxDepth);
                 System.out.println("# of nodes expanded = " + nodesExpanded);
                 System.out.println("Cost of Path = "+ costOfPath);
-//    			while (startOfPath != null) {
-//    				System.out.println(startOfPath.getState());
-//    				startOfPath = startOfPath.getChild();
-//    			}
 
                 return true;
             }
@@ -253,6 +245,21 @@ public class AStar implements EightPuzzle{
         System.out.println("Unsolvable Case !");
         System.out.println("# of nodes expanded = " + (explored.size()));
         return false;
+    }
+
+    //Function to compute path to goal according to explored
+    public ArrayList<String> pathToGoal(){
+        ArrayList<String> path = new ArrayList<>();
+        String current = "012345678";
+        path.add(0,current);
+        while (current != null){
+
+            if(explored.get(current).getParent() == null)
+                break;
+            current = explored.get(current).getParent().getState();
+            path.add(0,current);
+        }
+        return path;
     }
 
 
