@@ -66,7 +66,8 @@ public class Controller {
     public void Array(ActionEvent press){
         String state = textField.getText();
         Count = 0;
-        if(astar.SearchTechEuclidean(state,"012345678")){
+        boolean x = astar.SearchTechEuclidean(state,"012345678");
+        if(x){
             states = astar.pathToGoal();
             System.out.println("Path to Goal :");
             for(int i=0;i< states.size();i++){
