@@ -4,7 +4,7 @@ import java.util.*;
 public class BFS implements EightPuzzle{
     int Max=0;
     int nodesExpanded=0;
-    HashMap<String,Node> explored =new HashMap<String,Node>();
+    private HashMap<String,Node> explored =new HashMap<String,Node>();
     @Override
     public Boolean SearchTech(String initialState, String goalState) {
 
@@ -43,5 +43,33 @@ public class BFS implements EightPuzzle{
         }
         System.out.println("Failed with Max depth = "+Max+" and with expanded = "+nodesExpanded);
         return false;
+    }
+
+    public int getMax() {
+        return Max;
+    }
+
+    public int getNodesExpanded() {
+        return nodesExpanded;
+    }
+
+    public void reset(){
+        Max = 0;
+        nodesExpanded = 0;
+        explored =  new HashMap<>();
+    }
+
+    public ArrayList<String> pathToGoal(){
+        ArrayList<String> path = new ArrayList<>();
+        String current = "012345678";
+        path.add(0,current);
+        while (current != null){
+
+            if(explored.get(current).getParent() == null)
+                break;
+            current = explored.get(current).getParent().getState();
+            path.add(0,current);
+        }
+        return path;
     }
 }

@@ -44,7 +44,7 @@ public class Controller {
     private Boolean flag = false;
     private Boolean baseCaseButtons = false;
     private DFS dfs = new DFS();
-
+    private BFS bfs = new BFS();
 
 
     public void Next(ActionEvent press){
@@ -55,16 +55,23 @@ public class Controller {
             if(Count < states.size()) {
                 setButtons(states.get(Count++));
                 flag = true;
+                if(Count==states.size()){
+                    Start.setDisable(true);
+                    Stop.setDisable(true);
+                }
             }
         }
     }
     public void Array(ActionEvent press){
         String state = textField.getText();
         Count = 0;
-        if(dfs.SearchTech(state,"012345678")){
-            states = dfs.pathToGoal();
+        bfs.reset();
+        if(bfs.SearchTech(state,"012345678")){
+            states = bfs.pathToGoal();
             setButtons(state);
             baseCaseButtons = true;
+            Start.setDisable(false);
+            Stop.setDisable(false);
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -75,6 +82,7 @@ public class Controller {
             Start.setDisable(true);
             Stop.setDisable(true);
         }
+        textField.clear();
     }
     public void setButtons(String state){
         Zero.setText(Character.toString(state.charAt(0)));
