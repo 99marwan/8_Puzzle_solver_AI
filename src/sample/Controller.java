@@ -2,6 +2,7 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -40,19 +41,40 @@ public class Controller {
 
     private ArrayList<String> states;
     private int Count = 0;
+    private Boolean flag = false;
+    private Boolean baseCaseButtons = false;
+    private DFS dfs = new DFS();
 
 
 
-    public void Start(ActionEvent press){
-        if(Count < states.size())
-            setButtons(states.get(Count++));
+    public void Next(ActionEvent press){
+        if(baseCaseButtons){
+            if(!flag){
+                Count++;
+            }
+            if(Count < states.size()) {
+                setButtons(states.get(Count++));
+                flag = true;
+            }
+        }
     }
     public void Array(ActionEvent press){
-        states = new ArrayList<>();
-        states.add("125340678");
-        states.add("120345678");
-        states.add("102345678");
-        states.add("012345678");
+        String state = textField.getText();
+        Count = 0;
+        if(dfs.SearchTech(state,"012345678")){
+            states = dfs.pathToGoal();
+            setButtons(state);
+            baseCaseButtons = true;
+        }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("DevLaunch Dialog");
+            alert.setHeaderText("An error has been encountered");
+            alert.setContentText("Un solvable");
+            alert.showAndWait();
+            Start.setDisable(true);
+            Stop.setDisable(true);
+        }
     }
     public void setButtons(String state){
         Zero.setText(Character.toString(state.charAt(0)));
@@ -65,8 +87,18 @@ public class Controller {
         Seven.setText(Character.toString(state.charAt(7)));
         Eight.setText(Character.toString(state.charAt(8)));
     }
-    public void Exit(ActionEvent press){
-        System.exit(0);
+    public void Previous(ActionEvent press){
+        if(baseCaseButtons){
+            if(flag){
+                Count--;
+                flag = false;
+            }
+            Count--;
+            if(Count >= 0)
+                setButtons(states.get(Count));
+            else
+                Count = 0;
+        }
     }
 
 }

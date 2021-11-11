@@ -9,7 +9,7 @@ public class DFS implements EightPuzzle{
 
     private int maxDepth = 0;
     private int visit = 0;
-    private  HashMap<String,Node> visited =  new HashMap<>();
+    private  HashMap<String,Node> visited = new HashMap<>();
 
     @Override
     public Boolean SearchTech(String initialState, String goalState) {
@@ -87,6 +87,20 @@ public class DFS implements EightPuzzle{
         maxDepth = 0;
         visit = 0;
         visited =  new HashMap<>();
+    }
+
+    public ArrayList<String> pathToGoal(){
+        ArrayList<String> path = new ArrayList<>();
+        String current = "012345678";
+        path.add(0,current);
+        while (current != null){
+
+            if(visited.get(current).getParent() == null)
+                break;
+            current = visited.get(current).getParent().getState();
+            path.add(0,current);
+        }
+        return path;
     }
 
 }
