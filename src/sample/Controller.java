@@ -45,6 +45,7 @@ public class Controller {
     private Boolean baseCaseButtons = false;
     private DFS dfs = new DFS();
     private BFS bfs = new BFS();
+    private AStar astar = new AStar();
 
 
     public void Next(ActionEvent press){
@@ -65,8 +66,13 @@ public class Controller {
     public void Array(ActionEvent press){
         String state = textField.getText();
         Count = 0;
-        if(bfs.SearchTech(state,"012345678")){
-            states = bfs.pathToGoal();
+        if(astar.SearchTechEuclidean(state,"012345678")){
+            states = astar.pathToGoal();
+            System.out.println("Path to Goal :");
+            for(int i=0;i< states.size();i++){
+                System.out.println(states.get(i));
+            }
+            System.out.println("==========================================");
             setButtons(state);
             baseCaseButtons = true;
             Start.setDisable(false);
@@ -74,9 +80,9 @@ public class Controller {
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("DevLaunch Dialog");
+            alert.setTitle("FAILED");
             alert.setHeaderText("An error has been encountered");
-            alert.setContentText("Un solvable");
+            alert.setContentText("Unsolvable");
             alert.showAndWait();
             Start.setDisable(true);
             Stop.setDisable(true);

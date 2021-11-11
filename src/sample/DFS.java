@@ -51,7 +51,7 @@ public class DFS implements EightPuzzle{
 
             if(current.getState().equals(goalState)){
                 costOfPath = current.getDepth();
-                System.out.println("\n\nSUCCESS");
+                System.out.println("SUCCESS");
                 System.out.println("visited nodes : " + this.visit + ",  Max depth : " + this.maxDepth
                  + ",  goal depth : " + current.getDepth());
                 return true;
