@@ -146,11 +146,6 @@ public class Controller {
                 Stop.setDisable(false);
             } else {
                 System.out.println("==========================================");
-                /*Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("FAILED");
-                alert.setHeaderText("An error has been encountered");
-                alert.setContentText("Unsolvable");
-                alert.showAndWait();*/
                 label.setText("Unsolvable");
                 label.setTextFill(Color.RED);
                 label.setVisible(true);
