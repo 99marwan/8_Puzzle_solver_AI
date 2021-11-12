@@ -1,25 +1,16 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.lang.reflect.Type;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 
 public class Controller {
-    FileInputStream input = new FileInputStream("/home/aikye/Downloads/Arrow.png");
-    Image image = new Image(input);
-    ImageView imageView = new ImageView(image);
     @FXML
     private Button Zero;
     @FXML
@@ -77,16 +68,6 @@ public class Controller {
 
     public Controller() throws FileNotFoundException {
     }
-
-    public void Add(ActionEvent press){
-        ObservableList<String> options =
-                FXCollections.observableArrayList(
-                        "BFS",
-                        "DFS",
-                        "A* Manhattan","A* Euclidean"
-                );
-         combo = new ComboBox(options);
-    }
     public void Next(ActionEvent press){
         if(baseCaseButtons){
             if(!flag){
@@ -96,17 +77,9 @@ public class Controller {
                 setButtons(states.get(Count++));
                 flag = true;
                 if(Count==states.size()){
+                    label.setText("SUCCESS");
+                    label.setTextFill(Color.GREEN);
                     label.setVisible(true);
-                    label1.setText("Search Depth = "+Depth);
-                    label2.setText("Running time = "+time+" micros");
-                    label3.setText("Nodes Expanded = "+nodesExp);
-                    label4.setText("Cost of Path = "+cost);
-                    label11.setText(("Max Depth = "+max));
-                    label1.setVisible(true);
-                    label2.setVisible(true);
-                    label3.setVisible(true);
-                    label4.setVisible(true);
-                    label11.setVisible(true);
                     Start.setDisable(true);
                     Stop.setDisable(true);
                 }
@@ -122,7 +95,7 @@ public class Controller {
         label11.setVisible(false);
         String state = textField.getText();
         if(Pattern.matches("[0-8]{9}",state)) {
-            String str="A* Manhattan";
+            String str=combo.getValue().toString();
             EightPuzzle ob;
             if(str.equalsIgnoreCase("BFS")){
                 ob = new BFS();
@@ -145,8 +118,6 @@ public class Controller {
             time = (time2 - time1) / 1000;
             System.out.println(">> Running time is " + time + " in Microsecond");
             if (x) {
-
-
                 nodesExp=ob.getNodesExpanded();
                 cost=ob.getCostOfPath();
                 max=ob.getMaxDepth();
@@ -155,21 +126,34 @@ public class Controller {
                 Depth = states.size()-1;
 
                 System.out.println("Path to Goal :");
-                for (int i = 0; i < states.size(); i++) {
-                    System.out.println(states.get(i));
+                for (String s : states) {
+                    System.out.println(s);
                 }
                 System.out.println("==========================================");
+                label1.setText("Search Depth = "+Depth);
+                label2.setText("Running time = "+time+" micros");
+                label3.setText("Nodes Expanded = "+nodesExp);
+                label4.setText("Cost of Path = "+cost);
+                label11.setText(("Max Depth = "+max));
+                label1.setVisible(true);
+                label2.setVisible(true);
+                label3.setVisible(true);
+                label4.setVisible(true);
+                label11.setVisible(true);
                 setButtons(state);
                 baseCaseButtons = true;
                 Start.setDisable(false);
                 Stop.setDisable(false);
             } else {
                 System.out.println("==========================================");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+                /*Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("FAILED");
                 alert.setHeaderText("An error has been encountered");
                 alert.setContentText("Unsolvable");
-                alert.showAndWait();
+                alert.showAndWait();*/
+                label.setText("Unsolvable");
+                label.setTextFill(Color.RED);
+                label.setVisible(true);
                 Start.setDisable(true);
                 Stop.setDisable(true);
             }
