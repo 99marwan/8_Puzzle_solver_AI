@@ -4,7 +4,6 @@ public class Node implements Comparable<Node>  {
 	private String state;
 	private int depth;
 	private Node parent;
-	private Node child;
 
 	private double cost;
 
@@ -37,14 +36,6 @@ public class Node implements Comparable<Node>  {
 
 	public Node getParent() {
 		return this.parent;
-	}
-
-	public Node getChild() {
-		return this.child;
-	}
-
-	public void setChild(Node child) {
-		this.child = child;
 	}
 
 
