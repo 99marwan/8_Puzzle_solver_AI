@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class Controller {
@@ -46,6 +47,7 @@ public class Controller {
     private DFS dfs = new DFS();
     private BFS bfs = new BFS();
     private AStar astar = new AStar();
+    private long time;
 
 
     public void Next(ActionEvent press){
@@ -65,30 +67,41 @@ public class Controller {
     }
     public void Array(ActionEvent press){
         String state = textField.getText();
-        Count = 0;
-        boolean x = astar.SearchTechEuclidean(state,"012345678");
-        if(x){
-            states = astar.pathToGoal();
-            System.out.println("Path to Goal :");
-            for(int i=0;i< states.size();i++){
-                System.out.println(states.get(i));
+        if(Pattern.matches("[0-8]{9}",state)) {
+            Count = 0;
+            long time1 = System.nanoTime();
+            boolean x = astar.SearchTechEuclidean(state, "012345678");
+            long time2 = System.nanoTime();
+            time = (time2 - time1) / 1000000;
+            System.out.println(">> Running time is " + time + " in Millisecond");
+            if (x) {
+                states = astar.pathToGoal();
+                System.out.println("Path to Goal :");
+                for (int i = 0; i < states.size(); i++) {
+                    System.out.println(states.get(i));
+                }
+                System.out.println("==========================================");
+                setButtons(state);
+                baseCaseButtons = true;
+                Start.setDisable(false);
+                Stop.setDisable(false);
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("FAILED");
+                alert.setHeaderText("An error has been encountered");
+                alert.setContentText("Unsolvable");
+                alert.showAndWait();
+                Start.setDisable(true);
+                Stop.setDisable(true);
             }
-            System.out.println("==========================================");
-            setButtons(state);
-            baseCaseButtons = true;
-            Start.setDisable(false);
-            Stop.setDisable(false);
-        }
-        else {
+            textField.clear();
+        }else{
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("FAILED");
+            alert.setTitle("INVALID INPUT");
             alert.setHeaderText("An error has been encountered");
-            alert.setContentText("Unsolvable");
+            alert.setContentText("Type a valid state from between 0 and 8");
             alert.showAndWait();
-            Start.setDisable(true);
-            Stop.setDisable(true);
         }
-        textField.clear();
     }
     public void setButtons(String state){
         Zero.setText(Character.toString(state.charAt(0)));
