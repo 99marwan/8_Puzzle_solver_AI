@@ -77,13 +77,23 @@ public class DFS implements EightPuzzle{
         return false;
     }
 
+    @Override
+    public Boolean SearchAStarEuclidean(String initialState, String goalState) {
+        return null;
+    }
 
     public int getMaxDepth() {
         return maxDepth;
     }
 
-    public int getVisit() {
+
+    public int getNodesExpanded() {
         return visit;
+    }
+
+
+    public int getCostOfPath() {
+        return costOfPath;
     }
 
 

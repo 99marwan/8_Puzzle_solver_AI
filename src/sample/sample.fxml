@@ -1,55 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: F5E6CA;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: linear-gradient(to bottom, d42421, #6a5acd);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Button fx:id="Zero" cancelButton="true" contentDisplay="RIGHT" layoutX="344.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="0" textFill="#ffebeb">
+        <Button fx:id="Zero" cancelButton="true" contentDisplay="RIGHT" layoutX="344.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="0" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="One" layoutX="453.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="1" textFill="#ffebeb">
+        <Button fx:id="One" layoutX="453.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="1" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Two" layoutX="561.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="2" textFill="#ffebeb">
+        <Button fx:id="Two" layoutX="561.0" layoutY="216.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="2" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Three" layoutX="344.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="3" textFill="#ffebeb">
+        <Button fx:id="Three" layoutX="344.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="3" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Four" layoutX="452.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="4" textFill="#ffebeb">
+        <Button fx:id="Four" layoutX="452.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="4" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Five" layoutX="561.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="5" textFill="#ffebeb">
+        <Button fx:id="Five" layoutX="561.0" layoutY="327.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="5" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Six" layoutX="344.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="6" textFill="#ffebeb">
+        <Button fx:id="Six" layoutX="344.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="6" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Seven" layoutX="452.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="7" textFill="#ffebeb">
+        <Button fx:id="Seven" layoutX="452.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="7" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
-        <Button fx:id="Eight" layoutX="561.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: F54748;" text="8" textFill="#ffebeb">
+        <Button fx:id="Eight" layoutX="561.0" layoutY="437.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #9bab9f; -fx-background-radius: 50;" text="8" textFill="#252424">
             <font>
                 <Font name="Arial Black" size="27.0" />
             </font></Button>
         <Button fx:id="Stop" layoutX="351.0" layoutY="596.0" mnemonicParsing="false" onAction="#Previous" prefHeight="39.0" prefWidth="87.0" style="-fx-background-radius: 50; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Previous" />
         <Button fx:id="Start" layoutX="568.0" layoutY="596.0" mnemonicParsing="false" onAction="#Next" prefHeight="39.0" prefWidth="87.0" style="-fx-background-radius: 50; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="Next" />
-        <Label layoutX="347.0" layoutY="69.0" prefHeight="100.0" prefWidth="313.0" text="8 puzzle " textFill="#343f56">
-            <font>
-                <Font name="Eras Bold ITC" size="60.0" />
-            </font>
-        </Label>
-        <TextField fx:id="textField" layoutX="68.0" layoutY="365.0" />
-        <Button fx:id="setArray" layoutX="116.0" layoutY="402.0" mnemonicParsing="false" onAction="#Array" text="Button" />
+        <TextField fx:id="textField" layoutX="55.0" layoutY="358.0" prefHeight="31.0" prefWidth="183.0" style="-fx-background-radius: 20;" />
+        <Button fx:id="setArray" layoutX="96.0" layoutY="408.0" mnemonicParsing="false" onAction="#Array" prefHeight="39.0" prefWidth="87.0" style="-fx-background-radius: 20;" text="Solve" />
+      <Label layoutX="385.0" layoutY="68.0" prefHeight="56.0" prefWidth="276.0" text="8 Puzzle" textFill="#100f1a">
+         <font>
+            <Font name="Manjari Regular" size="60.0" />
+         </font>
+      </Label>
+      <Label fx:id="label" layoutX="412.0" layoutY="645.0" prefHeight="72.0" prefWidth="200.0" text="SUCCESS" textFill="#0bf241" visible="false">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" layoutX="738.0" layoutY="501.0" prefHeight="72.0" prefWidth="257.0" text="Label" visible="false" />
+      <Label fx:id="label2" layoutX="738.0" layoutY="372.0" prefHeight="72.0" prefWidth="257.0" text="Label" visible="false" />
+      <Label fx:id="label3" layoutX="738.0" layoutY="302.0" prefHeight="72.0" prefWidth="257.0" text="Label" visible="false" />
+      <Label fx:id="label4" layoutX="738.0" layoutY="244.0" prefHeight="72.0" prefWidth="257.0" text="Label" visible="false" />
+      <Label fx:id="label11" layoutX="738.0" layoutY="437.0" prefHeight="72.0" prefWidth="257.0" text="Label" visible="false" />
+      <ComboBox id="combo" fx:id="combo" layoutX="65.0" layoutY="216.0" onAction="#Add" onMouseClicked="#Add" prefWidth="150.0" promptText="Algorithms" style="-fx-background-radius: 10;" visibleRowCount="4" />
     </children>
 </Pane>

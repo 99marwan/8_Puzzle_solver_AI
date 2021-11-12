@@ -1,18 +1,25 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Type;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 
 public class Controller {
+    FileInputStream input = new FileInputStream("/home/aikye/Downloads/Arrow.png");
+    Image image = new Image(input);
+    ImageView imageView = new ImageView(image);
     @FXML
     private Button Zero;
     @FXML
@@ -39,6 +46,21 @@ public class Controller {
     private Button setArray;
     @FXML
     private TextField textField;
+    @FXML
+    private Label label;
+    @FXML
+    private Label label1;
+    @FXML
+    private Label label2;
+    @FXML
+    private Label label3;
+    @FXML
+    private Label label4;
+    @FXML
+    private Label label11;
+    @FXML
+    private ComboBox combo;
+
 
     private ArrayList<String> states;
     private int Count = 0;
@@ -48,8 +70,23 @@ public class Controller {
     private BFS bfs = new BFS();
     private AStar astar = new AStar();
     private long time;
+    private int Depth;
+    private int nodesExp;
+    private int cost;
+    private int max;
 
+    public Controller() throws FileNotFoundException {
+    }
 
+    public void Add(ActionEvent press){
+        ObservableList<String> options =
+                FXCollections.observableArrayList(
+                        "BFS",
+                        "DFS",
+                        "A* Manhattan","A* Euclidean"
+                );
+         combo = new ComboBox(options);
+    }
     public void Next(ActionEvent press){
         if(baseCaseButtons){
             if(!flag){
@@ -59,6 +96,17 @@ public class Controller {
                 setButtons(states.get(Count++));
                 flag = true;
                 if(Count==states.size()){
+                    label.setVisible(true);
+                    label1.setText("Search Depth = "+Depth);
+                    label2.setText("Running time = "+time+" micros");
+                    label3.setText("Nodes Expanded = "+nodesExp);
+                    label4.setText("Cost of Path = "+cost);
+                    label11.setText(("Max Depth = "+max));
+                    label1.setVisible(true);
+                    label2.setVisible(true);
+                    label3.setVisible(true);
+                    label4.setVisible(true);
+                    label11.setVisible(true);
                     Start.setDisable(true);
                     Stop.setDisable(true);
                 }
@@ -66,16 +114,46 @@ public class Controller {
         }
     }
     public void Array(ActionEvent press){
+        label.setVisible(false);
+        label1.setVisible(false);
+        label2.setVisible(false);
+        label3.setVisible(false);
+        label4.setVisible(false);
+        label11.setVisible(false);
         String state = textField.getText();
         if(Pattern.matches("[0-8]{9}",state)) {
+            String str="A* Manhattan";
+            EightPuzzle ob;
+            if(str.equalsIgnoreCase("BFS")){
+                ob = new BFS();
+            }else if (str.equalsIgnoreCase("DFS")){
+                ob = new DFS();
+            }else if(str.equalsIgnoreCase("A* Manhattan")){
+                ob = new AStar();
+            }else{
+                ob = new AStar();
+            }
             Count = 0;
+            boolean x;
             long time1 = System.nanoTime();
-            boolean x = astar.SearchTechEuclidean(state, "012345678");
+            if(str.equalsIgnoreCase("A* Euclidean") ){
+                x = ob.SearchAStarEuclidean(state, "012345678");
+            }else{
+                x = ob.SearchTech(state, "012345678");
+            }
             long time2 = System.nanoTime();
-            time = (time2 - time1) / 1000000;
-            System.out.println(">> Running time is " + time + " in Millisecond");
+            time = (time2 - time1) / 1000;
+            System.out.println(">> Running time is " + time + " in Microsecond");
             if (x) {
-                states = astar.pathToGoal();
+
+
+                nodesExp=ob.getNodesExpanded();
+                cost=ob.getCostOfPath();
+                max=ob.getMaxDepth();
+
+                states = ob.pathToGoal();
+                Depth = states.size()-1;
+
                 System.out.println("Path to Goal :");
                 for (int i = 0; i < states.size(); i++) {
                     System.out.println(states.get(i));
@@ -86,6 +164,7 @@ public class Controller {
                 Start.setDisable(false);
                 Stop.setDisable(false);
             } else {
+                System.out.println("==========================================");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("FAILED");
                 alert.setHeaderText("An error has been encountered");
@@ -96,6 +175,7 @@ public class Controller {
             }
             textField.clear();
         }else{
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("INVALID INPUT");
             alert.setHeaderText("An error has been encountered");

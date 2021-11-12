@@ -5,7 +5,7 @@ public class BFS implements EightPuzzle{
     int Max=0; // variable for maximum depth
     int nodesExpanded=0; // number of nodes visited
     //Variable that contains the cost of the path
-    private int costOfPath = 0;
+    int costOfPath = 0;
     //Map for EVERY visited state
     private HashMap<String,Node> explored =new HashMap<String,Node>();
     @Override
@@ -68,12 +68,24 @@ public class BFS implements EightPuzzle{
         return false;
     }
 
-    public int getMax() {
+    @Override
+    public Boolean SearchAStarEuclidean(String initialState, String goalState) {
+        return null;
+    }
+
+    public int getMaxDepth() {
         return Max;
     }
 
+
+
     public int getNodesExpanded() {
         return nodesExpanded;
+    }
+
+
+    public int getCostOfPath() {
+        return costOfPath;
     }
 
     //Function to compute path to goal according to explored

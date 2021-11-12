@@ -112,7 +112,7 @@ public class AStar implements EightPuzzle{
                 }
                 startOfPath = currState;*/
 
-                System.out.println("Goal Reached !");
+                System.out.println("Goal Reached Man !");
                 System.out.println("Search Depth " + maxDepth);
                 System.out.println("# of nodes expanded = " + nodesExpanded);
                 System.out.println("Cost of Path = "+ costOfPath);
@@ -154,7 +154,7 @@ public class AStar implements EightPuzzle{
         return false;
     }
 
-    private Boolean SearchAStarEuclidean(String initialState, String goalState) {
+     public Boolean SearchAStarEuclidean(String initialState, String goalState) {
 
         Helper utils = new Helper();
 
@@ -205,7 +205,7 @@ public class AStar implements EightPuzzle{
                 }
                 startOfPath = currState;*/
 
-                System.out.println("Goal Reached !");
+                System.out.println("Goal Reached Euc !");
                 System.out.println("Search Depth " + maxDepth);
                 System.out.println("# of nodes expanded = " + nodesExpanded);
                 System.out.println("Cost of Path = "+ costOfPath);
