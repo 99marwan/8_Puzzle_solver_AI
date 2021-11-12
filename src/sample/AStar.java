@@ -11,8 +11,6 @@ public class AStar implements EightPuzzle{
 
     //Variable that tracks max depth in search
     private int maxDepth=0;
-    //Variable that contains first node in path to goal after finding the path
-    private Node startOfPath;
     //Variable that contains number of nodes expanded
     private int nodesExpanded = 0;
     //Variable that contains the cost of the path
@@ -20,11 +18,6 @@ public class AStar implements EightPuzzle{
 
     public int getMaxDepth() {
         return maxDepth;
-    }
-
-
-    public Node getStartOfPath() {
-        return startOfPath;
     }
 
 
@@ -42,7 +35,6 @@ public class AStar implements EightPuzzle{
     @Override
     public Boolean SearchTech(String initialState, String goalState) {
         maxDepth=0;
-        startOfPath = null;
         nodesExpanded = 0;
         explored = new HashMap<>();
         costOfPath = 0;
@@ -53,7 +45,6 @@ public class AStar implements EightPuzzle{
     //Resets max depth and performs A* search using Euclidean Distance as the heuristic
     public Boolean SearchTechEuclidean(String initialState, String goalState) {
         maxDepth=0;
-        startOfPath = null;
         nodesExpanded = 0;
         costOfPath = 0;
         explored = new HashMap<>();
@@ -103,14 +94,6 @@ public class AStar implements EightPuzzle{
                 nodesExpanded = explored.size();
                 costOfPath = currState.getDepth();
 
-                /*startOfPath = currState.getParent();
-                while (startOfPath != null) {
-                    startOfPath.setChild(currState);
-                    currState = startOfPath;
-                    startOfPath = startOfPath.getParent();
-
-                }
-                startOfPath = currState;*/
 
                 System.out.println("Goal Reached Man !");
                 System.out.println("Search Depth " + maxDepth);
@@ -196,14 +179,6 @@ public class AStar implements EightPuzzle{
                 nodesExpanded = explored.size();
                 costOfPath = currState.getDepth();
 
-                /*startOfPath = currState.getParent();
-                while (startOfPath != null) {
-                    startOfPath.setChild(currState);
-                    currState = startOfPath;
-                    startOfPath = startOfPath.getParent();
-
-                }
-                startOfPath = currState;*/
 
                 System.out.println("Goal Reached Euc !");
                 System.out.println("Search Depth " + maxDepth);
