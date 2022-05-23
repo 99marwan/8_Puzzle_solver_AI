@@ -1,19 +1,21 @@
 # 8_Puzzle_solver_AI
 Find solution to 8 puzzle using (**DFS**,**BFS**,**A*** with Manhattan Vs Euclidean heurstics)
 
+![image](https://user-images.githubusercontent.com/54478282/169845334-e02fa837-8bbe-49bd-9ccb-ecdeb3c5f40b.png)
+
 ## Assumptions and Details
 ● Once the given initial state is solved, the user can click on
 the ‘Next’ button to see the next state in the solution and
 the ‘Previous’ button to see the previous state. Once the
-user reaches the goal state, the buttons are disabled.
+user reaches the goal state, the buttons are disabled.__
 ● Assuming the starting algorithm will be DFS if the user
 didn’t change it
 
-![image](https://user-images.githubusercontent.com/54478282/169845334-e02fa837-8bbe-49bd-9ccb-ecdeb3c5f40b.png)
+
 
 ![image](https://user-images.githubusercontent.com/54478282/169845974-31524f0b-2d2d-4357-866a-d536d7cd3d31.png)
 
-**Manhattan Vs Euclidean**
+## **Manhattan Vs Euclidean**
 After reviewing the table shown above and comparing the
 Manhattan heuristic and the Euclidean heuristic, it appears
 that the Manhattan heuristic expands less nodes and has a
